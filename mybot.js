@@ -89,6 +89,28 @@ client.on("message", (message) => {
           }, 3000);
       }
   }
+  if(message.content.startsWith("YAMETE")){
+    if (message.member.voiceChannel) {
+        message.member.voiceChannel.join()
+          .then(connection => { // Connection is an instance of VoiceConnection
+            //connection.playFile(soundList[a]);
+            connection.playFile("./soundbox/yamete.mp3");
+          })
+          .catch(console.log);
+          setTimeout(function(){
+            message.member.voiceChannel.leave();
+          }, 11000);
+      }
+  }
+
+
+
+
+
+
+
+
+
 /*  if(message.content.startsWith("a")){
     message.channel.send("b").then(message => message.edit("c")).then(message => message.edit("d")).then(message => message.edit("e")).then(message => message.edit("f"));
   }*/
