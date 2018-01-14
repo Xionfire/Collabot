@@ -7,7 +7,6 @@ const prefix=config.prefix;
 const url = require("./url.json");
 const fs= require ("fs");
 const Simulateur= require("./Simulateur.json");
-const soundList = require('./soundbox.json').sounds;
 
 client.on("ready", () => {
   console.log("I am ready to proc violent!");
