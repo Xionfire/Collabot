@@ -44,7 +44,7 @@ client.on("message", (message) => {
     message.channel.sendMessage("Le pokemon boule magic quand il joue on peut entendre zub ce masturber " );
   }
   if(message.content.startsWith(prefix + "sarean")){
-    message.channel.sendMessage("VAS FARME DES RUNES ENCULE <3" );
+    message.channel.sendMessage("VAS FARMER DES RUNES ENCULE <3" );
   }
   if(message.content.startsWith(prefix + "shiru")){
     message.channel.send("GvG DE MERDE !!!" , {tts:true});
@@ -95,6 +95,19 @@ client.on("message", (message) => {
           .then(connection => { // Connection is an instance of VoiceConnection
             //connection.playFile(soundList[a]);
             connection.playFile("./soundbox/yamete.mp3");
+          })
+          .catch(console.log);
+          setTimeout(function(){
+            message.member.voiceChannel.leave();
+          }, 11000);
+      }
+  }
+  if(message.content.startsWith("HOP DAVAI DAVAI")){
+    if (message.member.voiceChannel) {
+        message.member.voiceChannel.join()
+          .then(connection => { // Connection is an instance of VoiceConnection
+            //connection.playFile(soundList[a]);
+            connection.playFile("./soundbox/davai.mp3");
           })
           .catch(console.log);
           setTimeout(function(){
