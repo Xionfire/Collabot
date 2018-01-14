@@ -7,6 +7,7 @@ const prefix=config.prefix;
 const url = require("./url.json");
 const fs= require ("fs");
 const Simulateur= require("./Simulateur.json");
+const soundList = require('./soundbox.json').sounds;
 
 client.on("ready", () => {
   console.log("I am ready to proc violent!");
@@ -61,6 +62,26 @@ client.on("message", (message) => {
           .catch(console.log);
       } else {
         message.reply('You need to join a voice channel first!');
+      }
+  }
+  if(message.content.startsWith(prefix+"leave")){
+        message.member.voiceChannel.leave()
+          .then(connection => { // Connection is an instance of VoiceConnection
+            message.reply('I have successfully disconnected to the channel!');
+          })
+          .catch(console.log);
+  }
+  if(message.content.startsWith("AH")){
+    if (message.member.voiceChannel) {
+        message.member.voiceChannel.join()
+          .then(connection => { // Connection is an instance of VoiceConnection
+            //connection.playFile(soundList[a]);
+            connection.playFile("./soundbox/ah.mp3");
+          })
+          .catch(console.log);
+          setTimeout(function(){
+            message.member.voiceChannel.leave();
+          }, 3000);
       }
   }
 /*  if(message.content.startsWith("a")){
