@@ -1,0 +1,19 @@
+{
+  "tab":["Bonjour","Energie","Fatal","Blade","Swift","Despair","Violent","Focus","Guard","Endure","Shield","Revenge","Rage","Will","Nemesis","Vampire","Destroy"],
+  "stat":["Hp%","Hp+","Atk%","Atk+","Def%","Def+","Vit","Tcc","Dcc","ACC","Res"],
+  "flat":["Hp+","Def+","Atk+"],
+  "deux":["Hp%","Hp+","Atk%","Atk+","Def%","Def+","Vit"],
+  "quatre":["Hp%","Hp+","Atk%","Atk+","Def%","Def+","Tcc","Dcc"],
+  "six":["Hp%","Hp+","Atk%","Atk+","Def%","Def+","ACC","Res"],
+  "rarity":["Rare","Heroique","legendaire"]
+
+
+
+
+
+
+
+
+
+
+}
