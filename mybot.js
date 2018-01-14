@@ -40,6 +40,12 @@ client.on("message", (message) => {
   if(message.content.startsWith(prefix + "grav")){
     message.channel.sendMessage("L'homme trop bien sapé" );
   }
+  if(message.content.startsWith(prefix + "orion")){
+    message.channel.sendMessage("Le pokemon boule magic quand il joue on peut entendre zub ce masturber " );
+  }
+  if(message.content.startsWith(prefix + "sarean")){
+    message.channel.sendMessage("VAS FARME DE RUNE ENCULE <3" );
+  }
   if(message.content.startsWith(prefix + "shiru")){
     message.channel.send("GvG DE MERDE !!!" , {tts:true});
   }
