@@ -34,6 +34,21 @@ client.on("message", (message) => {
   if(message.content.startsWith(prefix + "def")){
     message.channel.send("Ta gueule" , {tts:true});
   }
+  if(message.content.startsWith(prefix + "sonnet")){
+    message.channel.send("Sonnet you make me feel in life" , {tts:true});
+  }
+  if(message.content.startsWith(prefix + "grav")){
+    message.channel.sendMessage("L'homme trop bien sapé" );
+  }
+  if(message.content.startsWith(prefix + "shiru")){
+    message.channel.send("GvG DE MERDE !!!" , {tts:true});
+  }
+  if(message.content.startsWith(prefix + "elgrim")){
+    message.channel.sendMessage("A plus micro" , {tts:true});
+    }
+  if(message.content.startsWith(prefix + "shark")){
+      message.channel.send("coin coin" , {tts:true});
+     
   if(message.content.startsWith(prefix+"karaoke")){
     message.channel.send(url.list[Math.floor(Math.random()*url.list.length)])
   }
