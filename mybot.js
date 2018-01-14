@@ -112,7 +112,7 @@ client.on("message", (message) => {
           .catch(console.log);
           setTimeout(function(){
             message.member.voiceChannel.leave();
-          }, 11000);
+          }, 18000);
       }
   }
 
