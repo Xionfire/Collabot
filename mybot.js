@@ -48,9 +48,20 @@ client.on("message", (message) => {
     }
   if(message.content.startsWith(prefix + "shark")){
       message.channel.send("coin coin" , {tts:true});
-     
+    }
   if(message.content.startsWith(prefix+"karaoke")){
     message.channel.send(url.list[Math.floor(Math.random()*url.list.length)])
+  }
+  if(message.content.startsWith(prefix+"join")){
+    if (message.member.voiceChannel) {
+        message.member.voiceChannel.join()
+          .then(connection => { // Connection is an instance of VoiceConnection
+            message.reply('I have successfully connected to the channel!');
+          })
+          .catch(console.log);
+      } else {
+        message.reply('You need to join a voice channel first!');
+      }
   }
 /*  if(message.content.startsWith("a")){
     message.channel.send("b").then(message => message.edit("c")).then(message => message.edit("d")).then(message => message.edit("e")).then(message => message.edit("f"));
