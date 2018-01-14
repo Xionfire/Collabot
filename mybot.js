@@ -7,7 +7,7 @@ const prefix=config.prefix;
 const url = require("./url.json");
 const fs= require ("fs");
 const Simulateur= require("./Simulateur.json");
-
+var helper = fs.readFileSync("./helper.txt","utf8");
 client.on("ready", () => {
   console.log("I am ready to proc violent!");
 });
@@ -75,6 +75,9 @@ client.on("message", (message) => {
             message.reply('I have successfully disconnected to the channel!');
           })
           .catch(console.log);
+  }
+  if(message.content.startsWith(prefix+'HELP')){
+    message.channel.send(helper);
   }
   if(message.content.startsWith("AH")){
     if (message.member.voiceChannel) {
@@ -237,7 +240,7 @@ function paire(pos){
   else if(pos===4){
    return Simulateur.quatre[Math.floor(Math.random()*Math.floor(Simulateur.quatre.length))];
 }else {
-  return Simulateur.six[Math.floor(Math.random()*Math.floor(Simulateur.six.length))];
+   return Simulateur.six[Math.floor(Math.random()*Math.floor(Simulateur.six.length))];
 }}
 function grad(grade){
   if(grade<70){
