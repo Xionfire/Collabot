@@ -73,7 +73,7 @@ client.on("message", (message) => {
       }
   }
   if(message.content.startsWith(prefix+"leave")){
-    var vc = message.guild.members.find('id',bot.user.id).voiceChannel;
+    var vc = message.guild.members.find('id',client.user.id).voiceChannel;
     if (vc) {
       vc.leave();
       message.reply("Voice channel successfully left. ＼(´ヘ`)");
@@ -101,7 +101,7 @@ client.on("message", (message) => {
       }
     }
     if(message.content.startsWith(prefix+"pause")){
-      var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
+      var vcPresent = message.member.voiceChannel.members.find('id',client.user.id);
       if (vcPresent) {
         if(dispatcher){
           dispatcher.pause();
@@ -112,7 +112,7 @@ client.on("message", (message) => {
       }
     }
     if(message.content.startsWith(prefix+"resume")){
-      var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
+      var vcPresent = message.member.voiceChannel.members.find('id',client.user.id);
       if (vcPresent) {
         if(dispatcher){
           dispatcher.resume();
