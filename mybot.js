@@ -83,18 +83,20 @@ client.on("message", (message) => {
   }
   if(command === "play"){
       var lien = message.content.split(" ")[1];
-      if(lien.startsWith("https://www.youtube.com/watch?v=")){
-        if (message.member.voiceChannel) {
-          message.member.voiceChannel.join()
-            .then(connection => { // Connection is an instance of VoiceConnection
-              message.reply("I have successfully connected to the channel! \(>▽<)/");
-              message.reply("Now playing the track. (〜￣△￣)〜");
-              const stream = ytdl(lien, { filter : 'audioonly' });
-              dispatcher = connection.playStream(stream, streamOptions);
-            })
-            .catch(console.log);
-        } else {
-          message.reply("You need to join a voice channel first! (・∧‐)ゞ");
+      if(lien)
+        if(lien.startsWith("https://www.youtube.com/watch?v=")){
+          if (message.member.voiceChannel) {
+            message.member.voiceChannel.join()
+              .then(connection => { // Connection is an instance of VoiceConnection
+                message.reply("I have successfully connected to the channel! \(>▽<)/");
+                message.reply("Now playing the track. (〜￣△￣)〜");
+                const stream = ytdl(lien, { filter : 'audioonly' });
+                dispatcher = connection.playStream(stream, streamOptions);
+              })
+              .catch(console.log);
+          } else {
+            message.reply("You need to join a voice channel first! (・∧‐)ゞ");
+          }
         }
       }
     }
