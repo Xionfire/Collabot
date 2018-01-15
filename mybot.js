@@ -7,10 +7,13 @@ const prefix=config.prefix;
 const url = require("./url.json");
 const fs= require ("fs");
 const Simulateur= require("./Simulateur.json");
+const ytdl = require('ytdl-core');
+const streamOptions = { seek: 0, volume: 1 };
 var helper = fs.readFileSync("./helper.txt","utf8");
 client.on("ready", () => {
   console.log("I am ready to proc violent!");
 });
+var dispatcher;
 
 var rune=0;
 let star="";
@@ -70,12 +73,53 @@ client.on("message", (message) => {
       }
   }
   if(message.content.startsWith(prefix+"leave")){
-        message.member.voiceChannel.leave()
-          .then(connection => { // Connection is an instance of VoiceConnection
-            message.reply('I have successfully disconnected to the channel!');
-          })
-          .catch(console.log);
+    var vc = message.guild.members.find('id',bot.user.id).voiceChannel;
+    if (vc) {
+      vc.leave();
+      message.reply("Voice channel successfully left. ＼(´ヘ`)");
+    } else {
+      message.reply("I'm currently not in any voice channel. ╮(´ヘ`)╭");
+    }
   }
+  if(command === "play"){
+      var lien = message.content.split(" ")[1];
+      if(lien.startsWith("https://www.youtube.com/watch?v=")){
+        if (message.member.voiceChannel) {
+          message.member.voiceChannel.join()
+            .then(connection => { // Connection is an instance of VoiceConnection
+              message.reply("I have successfully connected to the channel! \(>▽<)/");
+              message.reply("Now playing the track. (〜￣△￣)〜");
+              const stream = ytdl(lien, { filter : 'audioonly' });
+              dispatcher = connection.playStream(stream, streamOptions);
+            })
+            .catch(console.log);
+        } else {
+          message.reply("You need to join a voice channel first! (・∧‐)ゞ");
+        }
+      }
+    }
+    if(command === "pause"){
+      var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
+      if (vcPresent) {
+        if(dispatcher){
+          dispatcher.pause();
+          message.reply("Track paused.");
+        } else {
+          message.reply("Not playing any track. ╮(´ヘ`)╭");
+        }
+      }
+    }
+    if(command === "resume"){
+      var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
+      if (vcPresent) {
+        if(dispatcher){
+          dispatcher.resume();
+          message.reply("Track resumed.");
+        } else {
+          message.reply("Not playing any track. ╮(´ヘ`)╭");
+        }
+      }
+    }
   if(message.content.startsWith(prefix+'HELP')){
     message.channel.send(helper);
   }
@@ -118,7 +162,7 @@ client.on("message", (message) => {
           }, 18000);
       }
   }
-
+  if(message.content.startsWith(prefix + "GvG") && message.author.id ===
 
 
 
@@ -134,6 +178,23 @@ client.on("message", (message) => {
       var lien = message.content.split(" ")[1];
       if(lien.startsWith("https://www.youtube.com/watch?v=") && diflink(lien)){
         url.list.push(lien)
+        fs.writeFile("./url.json", JSON.stringify(url), function(err) {
+        if(err) {
+          console.log(err);
+        }
+        else {
+          console.log("link successfully added");
+        }
+      });
+      message.channel.send("link successfully added");
+    }else{
+      message.channel.send("link is invalid or already exist");
+    }
+  }
+  if(message.content.startsWith(prefix+"play") && message.content.substring(6).length > 1){
+      var lien = message.content.split(" ")[1];
+      if(lien.startsWith("https://www.youtube.com/watch?v=")){
+        playlist.push(lien)
         fs.writeFile("./url.json", JSON.stringify(url), function(err) {
         if(err) {
           console.log(err);
