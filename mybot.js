@@ -81,7 +81,7 @@ client.on("message", (message) => {
       message.reply("I'm currently not in any voice channel. ╮(´ヘ`)╭");
     }
   }
-  if(message.content.startsWith(prefix+"play"){
+  if(message.content.startsWith(prefix+"play")){
       var lien = message.content.split(" ")[1];
       if(lien)
         if(lien.startsWith("https://www.youtube.com/watch?v=")){
@@ -100,7 +100,7 @@ client.on("message", (message) => {
         }
       }
     }
-    if(message.content.startsWith(prefix+"pause"){
+    if(message.content.startsWith(prefix+"pause")){
       var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
       if (vcPresent) {
         if(dispatcher){
@@ -111,7 +111,7 @@ client.on("message", (message) => {
         }
       }
     }
-    if(message.content.startsWith(prefix+"resume"){
+    if(message.content.startsWith(prefix+"resume")){
       var vcPresent = message.member.voiceChannel.members.find('id',bot.user.id);
       if (vcPresent) {
         if(dispatcher){
