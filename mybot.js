@@ -136,9 +136,7 @@ client.on("message", (message) => {
             connection.playFile("./soundbox/ah.mp3");
           })
           .catch(console.log);
-          setTimeout(function(){
-            message.member.voiceChannel.leave();
-          }, 3000);
+          
       }
   }
   if(message.content.startsWith("YAMETE")){
@@ -149,9 +147,7 @@ client.on("message", (message) => {
             connection.playFile("./soundbox/yamete.mp3");
           })
           .catch(console.log);
-          setTimeout(function(){
-            message.member.voiceChannel.leave();
-          }, 11000);
+          
       }
   }
   if(message.content.startsWith("HOP DAVAI DAVAI")){
