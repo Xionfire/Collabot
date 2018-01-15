@@ -193,23 +193,6 @@ client.on("message", (message) => {
       message.channel.send("link is invalid or already exist");
     }
   }
-  if(message.content.startsWith(prefix+"play") && message.content.substring(6).length > 1){
-      var lien = message.content.split(" ")[1];
-      if(lien.startsWith("https://www.youtube.com/watch?v=")){
-        playlist.push(lien)
-        fs.writeFile("./url.json", JSON.stringify(url), function(err) {
-        if(err) {
-          console.log(err);
-        }
-        else {
-          console.log("link successfully added");
-        }
-      });
-      message.channel.send("link successfully added");
-    }else{
-      message.channel.send("link is invalid or already exist");
-    }
-  }
   if (message.content.startsWith(prefix + "rungeant")) {
     var geant=Math.floor(Math.random() * Math.floor(100));
     run(geant);
