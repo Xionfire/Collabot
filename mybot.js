@@ -83,7 +83,7 @@ client.on("message", (message) => {
   }
   if(message.content.startsWith(prefix+"play")){
       var lien = message.content.split(" ")[1];
-      if(lien)
+      if(lien){
         if(lien.startsWith("https://www.youtube.com/watch?v=")){
           if (message.member.voiceChannel) {
             message.member.voiceChannel.join()
