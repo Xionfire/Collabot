@@ -164,7 +164,7 @@ client.on("message", (message) => {
           }, 18000);
       }
   }
-  if(message.content.startsWith(prefix + "GvG") && message.author.id ===
+  //if(message.content.startsWith(prefix + "GvG") && message.author.id ===
 
 
 
