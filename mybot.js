@@ -91,6 +91,9 @@ client.on("message", (message) => {
                 message.reply("I have successfully connected to the channel! \(>▽<)/");
                 message.reply("Now playing the track. (〜￣△￣)〜");
                 const stream = ytdl(lien, { filter : 'audioonly' });
+                if(dispatcher){
+                  dispatcher.end();
+                }
                 dispatcher = connection.playStream(stream, streamOptions);
               })
               .catch(console.log);
