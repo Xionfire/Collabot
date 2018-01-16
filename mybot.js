@@ -6,8 +6,9 @@ const config = require("./config.json");
 const prefix=config.prefix;
 const url = require("./url.json");
 const fs= require ("fs");
-const Simulateur= require("./Simulateur.json");
-const ytdl = require('ytdl-core');
+const txt=require("./txt.json");
+
+//const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 var helper = fs.readFileSync("./helper.txt","utf8");
 client.on("ready", () => {
@@ -15,8 +16,6 @@ client.on("ready", () => {
 });
 var dispatcher;
 
-var rune=0;
-let star="";
 
 /*
 mention msg
@@ -28,36 +27,21 @@ client.on("message", (message) => {
 });*/
 
 client.on("message", (message) => {
-//classical msg
-  if (message.content.startsWith(prefix + "batman")) {
-    message.channel.sendMessage("<@180073496414519296>" +" On a besoin de toi"+" https://media.giphy.com/media/l0NwGpoOVLTAyUJSo/giphy.gif");
+//-------Command-------
+if(message.content.startsWith(prefix)){
+  var sub = message.content.substring(prefix.length);
+  var command = sub.split(" ")[0];
+  if(command === "violant"){
+    violent(message);
+  }
+  if(txt.tts[command]){
+    message.channel.send(txt.tts[command],{tts:true});
+  }else if (txt.classic[command]) {
+    message.channel.send(txt.classic[command]);
+  }
+}
 
-  }
-  //msg with option
-  if(message.content.startsWith(prefix + "def")){
-    message.channel.send("Ta gueule" , {tts:true});
-  }
-  if(message.content.startsWith(prefix + "sonnet")){
-    message.channel.send("Sonnet you make me feel in life" , {tts:true});
-  }
-  if(message.content.startsWith(prefix + "grav")){
-    message.channel.sendMessage("L'homme trop bien sapé" );
-  }
-  if(message.content.startsWith(prefix + "orion")){
-    message.channel.sendMessage("Le pokemon boule magic quand il joue on peut entendre zub ce masturber " );
-  }
-  if(message.content.startsWith(prefix + "sarean")){
-    message.channel.sendMessage("VAS FARMER DES RUNES ENCULE <3" );
-  }
-  if(message.content.startsWith(prefix + "shiru")){
-    message.channel.send("GvG DE MERDE !!!" , {tts:true});
-  }
-  if(message.content.startsWith(prefix + "elgrim")){
-    message.channel.sendMessage("A plus micro" , {tts:true});
-    }
-  if(message.content.startsWith(prefix + "shark")){
-      message.channel.send("coin coin" , {tts:true});
-    }
+//---------Song commands
   if(message.content.startsWith(prefix+"karaoke")){
     message.channel.send(url.list[Math.floor(Math.random()*url.list.length)])
   }
@@ -128,6 +112,8 @@ client.on("message", (message) => {
   if(message.content.startsWith(prefix+'HELP')){
     message.channel.send(helper);
   }
+
+//---------WTF commands
   if(message.content.startsWith("AH")){
     if (message.member.voiceChannel) {
         message.member.voiceChannel.join()
@@ -136,7 +122,7 @@ client.on("message", (message) => {
             connection.playFile("./soundbox/ah.mp3");
           })
           .catch(console.log);
-          
+
       }
   }
   if(message.content.startsWith("YAMETE")){
@@ -147,7 +133,7 @@ client.on("message", (message) => {
             connection.playFile("./soundbox/yamete.mp3");
           })
           .catch(console.log);
-          
+
       }
   }
   if(message.content.startsWith("HOP DAVAI DAVAI")){
@@ -164,14 +150,6 @@ client.on("message", (message) => {
       }
   }
   //if(message.content.startsWith(prefix + "GvG") && message.author.id ===
-
-
-
-
-
-
-
-
 /*  if(message.content.startsWith("a")){
     message.channel.send("b").then(message => message.edit("c")).then(message => message.edit("d")).then(message => message.edit("e")).then(message => message.edit("f"));
   }*/
@@ -192,28 +170,6 @@ client.on("message", (message) => {
       message.channel.send("link is invalid or already exist");
     }
   }
-  if (message.content.startsWith(prefix + "rungeant")) {
-    var geant=Math.floor(Math.random() * Math.floor(100));
-    run(geant);
-    var etoile=Math.floor(Math.random() * Math.floor(100));
-    stars(etoile);
-    var pos=Math.floor(Math.random()*Math.floor(6));
-    pos=pos+1;
-    var grade=Math.floor(Math.random() * Math.floor(100));
-    grad(grade);
-    message.channel.sendMessage(Simulateur.tab[rune]+" (" +(pos)+")" +" " + star);
-    message.channel.sendMessage(rare);
-    var stt = "";
-    if(pos%2!=0){
-    stt = flats(pos);
-    message.channel.sendMessage("**" + stt + "**");
-  }
-  else{
-    stt = paire(pos);
-    message.channel.sendMessage("**" + stt + "**");
-  }
-  sub(rare,message,pos,stt);
-}
 
 
 
@@ -241,87 +197,21 @@ function diflink(str){
     return true;
   }
 }
-function run(geant){
-  if (geant<21){
-    rune=1;
-  }
-  else if (geant<42){
-    rune=2;
-  }
-  else if(geant<63){
-    rune=3;
-  }
-  else if (geant<84){
-    rune=4;
-  }
-  else{
-    rune=5;
-  }
-  return rune;
-}
-function stars(etoile){
-  if(etoile<85){
-    star="5☆";
-  }else{
-    star="6☆";
-  }
-  return star;
-}
-function flats (pos){
-  if(pos==1){
-    return Simulateur.flat[2];
-  }
-  if(pos==3) {
-    return Simulateur.flat[1];
-  }
-  if(pos==5){
-    return Simulateur.flat[0];
-  }
-  }
-function paire(pos){
- if(pos===2){
-   return Simulateur.deux[Math.floor(Math.random()*Math.floor(Simulateur.deux.length))];
- }
-  else if(pos===4){
-   return Simulateur.quatre[Math.floor(Math.random()*Math.floor(Simulateur.quatre.length))];
-}else {
-   return Simulateur.six[Math.floor(Math.random()*Math.floor(Simulateur.six.length))];
-}}
-function grad(grade){
-  if(grade<70){
-    rare=Simulateur.rarity[0];
-  }
-  else if (grade<95) {
-    rare=Simulateur.rarity[1];
-
+function violent(message){
+  var lul=Math.floor(Math.random() * Math.floor(41));
+  if(lul<10){
+    return message.channel.send("Captain Orion on duty");
+  }else if (lul<20) {
+    return message.channel.send("Orewa Theomars SAMA !!!!!!!");
+  }else if (lul<30) {
+    return message.channel.send("TUTURU");
+  }else if(lul<40) {
+  return message.channel.send("Keep calm and JUST FUCKING SUCK DICK WITH YOUR FUCKING VIOLANT PROC !!!! Im calm dud CHUT UP");
   }else {
-    rare=Simulateur.rarity[2];
-  }
+   return message.channel.send("Just calm your selfe and breathe");
+ }
+
 }
-
-function sub(rare,message,pos,stt){
-var tps=0;
-    var mdr = [];
-    var a = 0;
-    mdr.push(stt)
-    if(rare==="Rare"){
-      a = 2;
-    }else if(rare==="Heroique"){
-      a = 3;
-    }else{
-      a = 4;
-    }
-    for(var i=0;i<a;i++){
-      tps=Math.floor(Math.random() * Math.floor(Simulateur.stat.length));
-      while(mdr.indexOf(Simulateur.stat[tps])!==-1){
-        tps=Math.floor(Math.random() * Math.floor(Simulateur.stat.length));
-      }
-      mdr.push(Simulateur.stat[tps]);
-      console.log(mdr[0],mdr[1],mdr[2]);
-      message.channel.sendMessage(Simulateur.stat[tps]);
-    }
-  }
-
 
 
 
