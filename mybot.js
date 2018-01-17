@@ -8,7 +8,7 @@ const url = require("./url.json");
 const fs= require ("fs");
 const txt=require("./txt.json");
 
-//const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 var helper = fs.readFileSync("./helper.txt","utf8");
 client.on("ready", () => {
