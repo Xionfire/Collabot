@@ -8,7 +8,7 @@ const url = require("./url.json");
 const fs= require ("fs");
 const txt=require("./txt.json");
 
-const ytdl = require('ytdl-core');
+//const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 var helper = fs.readFileSync("./helper.txt","utf8");
 client.on("ready", () => {
@@ -114,41 +114,21 @@ if(message.content.startsWith(prefix)){
   }
 
 //---------WTF commands
-  if(message.content.startsWith("AH")){
-    if (message.member.voiceChannel) {
+  if(message.content.startsWith()){
+    var sub = message.content.substring(0);
+    var command = sub.split(" ")[0];
+    if(txt.wtf[command]){
+     if (message.member.voiceChannel) {
         message.member.voiceChannel.join()
           .then(connection => { // Connection is an instance of VoiceConnection
             //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/ah.mp3");
+            connection.playFile(txt.wtf[command]);
           })
           .catch(console.log);
 
       }
-  }
-  if(message.content.startsWith("YAMETE")){
-    if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
-            //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/yamete.mp3");
-          })
-          .catch(console.log);
+  }}
 
-      }
-  }
-  if(message.content.startsWith("HOP DAVAI DAVAI")){
-    if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
-            //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/davai.mp3");
-          })
-          .catch(console.log);
-          setTimeout(function(){
-            message.member.voiceChannel.leave();
-          }, 18000);
-      }
-  }
   //if(message.content.startsWith(prefix + "GvG") && message.author.id ===
 /*  if(message.content.startsWith("a")){
     message.channel.send("b").then(message => message.edit("c")).then(message => message.edit("d")).then(message => message.edit("e")).then(message => message.edit("f"));
@@ -170,64 +150,3 @@ if(message.content.startsWith(prefix)){
       message.channel.send("link is invalid or already exist");
     }
   }
-
-
-
-
-
-
-
-
-
-});
-
-
-
-
-function diflink(str){
-  var cpt=0;
-  for(var i = 0; i<url.list.length;i++){
-    if(url.list[i]===str){
-      return false;
-    }else{
-      cpt=cpt+1;
-    }
-  }
-  if (cpt==url.list.length){
-    return true;
-  }
-}
-function violent(message){
-  var lul=Math.floor(Math.random() * Math.floor(41));
-  if(lul<10){
-    return message.channel.send("Captain Orion on duty");
-  }else if (lul<20) {
-    return message.channel.send("Orewa Theomars SAMA !!!!!!!");
-  }else if (lul<30) {
-    return message.channel.send("TUTURU");
-  }else if(lul<40) {
-  return message.channel.send("Keep calm and JUST FUCKING SUCK DICK WITH YOUR FUCKING VIOLANT PROC !!!! Im calm dud CHUT UP");
-  }else {
-   return message.channel.send("Just calm your selfe and breathe");
- }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-client.login(config.token);
