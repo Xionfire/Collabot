@@ -150,3 +150,64 @@ if(message.content.startsWith(prefix)){
       message.channel.send("link is invalid or already exist");
     }
   }
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+function diflink(str){
+  var cpt=0;
+  for(var i = 0; i<url.list.length;i++){
+    if(url.list[i]===str){
+      return false;
+    }else{
+      cpt=cpt+1;
+    }
+  }
+  if (cpt==url.list.length){
+    return true;
+  }
+}
+function violent(message){
+  var lul=Math.floor(Math.random() * Math.floor(41));
+  if(lul<10){
+    return message.channel.send("Captain Orion on duty");
+  }else if (lul<20) {
+    return message.channel.send("Orewa Theomars SAMA !!!!!!!");
+  }else if (lul<30) {
+    return message.channel.send("TUTURU");
+  }else if(lul<40) {
+  return message.channel.send("Keep calm and JUST FUCKING SUCK DICK WITH YOUR FUCKING VIOLANT PROC !!!! Im calm dud CHUT UP");
+  }else {
+   return message.channel.send("Just calm your selfe and breathe");
+ }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+client.login(config.token);
