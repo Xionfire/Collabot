@@ -114,41 +114,21 @@ if(message.content.startsWith(prefix)){
   }
 
 //---------WTF commands
-  if(message.content.startsWith("AH")){
-    if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
+  if(message.content.startsWith()){
+    var sub = message.content.substring(0);
+    var command = sub.split(" ")[0];
+      if(txt.wtf[command]){
+        if (message.member.voiceChannel) {
+          message.member.voiceChannel.join()
+            .then(connection => { // Connection is an instance of VoiceConnection
             //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/ah.mp3");
-          })
-          .catch(console.log);
+              connection.playFile(txt.wtf[command]);
+            })
+            .catch(console.log);
 
       }
-  }
-  if(message.content.startsWith("YAMETE")){
-    if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
-            //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/yamete.mp3");
-          })
-          .catch(console.log);
+  }}
 
-      }
-  }
-  if(message.content.startsWith("HOP DAVAI DAVAI")){
-    if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
-            //connection.playFile(soundList[a]);
-            connection.playFile("./soundbox/davai.mp3");
-          })
-          .catch(console.log);
-          setTimeout(function(){
-            message.member.voiceChannel.leave();
-          }, 18000);
-      }
-  }
   //if(message.content.startsWith(prefix + "GvG") && message.author.id ===
 /*  if(message.content.startsWith("a")){
     message.channel.send("b").then(message => message.edit("c")).then(message => message.edit("d")).then(message => message.edit("e")).then(message => message.edit("f"));
