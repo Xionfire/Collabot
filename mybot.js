@@ -117,14 +117,14 @@ if(message.content.startsWith(prefix)){
   if(message.content.startsWith()){
     var sub = message.content.substring(0);
     var command = sub.split(" ")[0];
-    if(txt.wtf[command]){
-     if (message.member.voiceChannel) {
-        message.member.voiceChannel.join()
-          .then(connection => { // Connection is an instance of VoiceConnection
+      if(txt.wtf[command]){
+        if (message.member.voiceChannel) {
+          message.member.voiceChannel.join()
+            .then(connection => { // Connection is an instance of VoiceConnection
             //connection.playFile(soundList[a]);
-            connection.playFile(txt.wtf[command]);
-          })
-          .catch(console.log);
+              connection.playFile(txt.wtf[command]);
+            })
+            .catch(console.log);
 
       }
   }}
@@ -159,7 +159,7 @@ if(message.content.startsWith(prefix)){
 
 
 
-})
+});
 
 
 
@@ -211,3 +211,4 @@ function violent(message){
 
 
 client.login(config.token);
+
